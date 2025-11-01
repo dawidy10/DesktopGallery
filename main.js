@@ -56,7 +56,7 @@ function registerDialogHandler() {
 	});
 
 	ipcMain.handle("read-images", async (event, folderPath) => {
-		const exts = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+		const exts = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"];
 		try {
 			const files = fs.readdirSync(folderPath);
 			const images = files
