@@ -4,13 +4,15 @@
 	"version": "0.0.0",
 	"main": "main.js",
 	"scripts": {
-		"dev": "concurrently \"vite\" \"cross-env NODE_ENV=dev electron .\"",
+		"dev": "vite",
+		"start": "cross-env NODE_ENV=development electron .",
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.16",
+		"express": "^5.1.0",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
 		"tailwindcss": "^4.1.16"

@@ -1,5 +1,6 @@
-const { contextBridge } = require("electron");
+const { contextBridge, ipcRenderer } = require("electron");
 
-contextBridge.exposeInMainWorld("electronAPI", {
-	appVersion: () => "1.0.0",
+contextBridge.exposeInMainWorld("api", {
+	selectFolder: () => ipcRenderer.invoke("select-folder"),
+	readImages: (folderPath) => ipcRenderer.invoke("read-images", folderPath),
 });
