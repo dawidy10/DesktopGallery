@@ -4,10 +4,13 @@ const path = require("path");
 const isDev = !app.isPackaged;
 const protocolName = "local";
 
+let win;
+
 function createWindow() {
-	const win = new BrowserWindow({
+	win = new BrowserWindow({
 		width: 1000,
 		height: 700,
+		frame: false,
 		webPreferences: {
 			preload: path.join(__dirname, "preload.js"),
 			sandbox: false,
@@ -82,4 +85,19 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") app.quit();
+});
+
+ipcMain.on("window:minimize", () => {
+	if (win) win.minimize();
+});
+
+ipcMain.on("window:maximize", () => {
+	if (win) {
+		if (win.isMaximized()) win.unmaximize();
+		else win.maximize();
+	}
+});
+
+ipcMain.on("window:close", () => {
+	if (win) win.close();
 });
