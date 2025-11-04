@@ -1,11 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import "./App.css";
 import App from "./App.jsx";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<nav className="border-b-1 p-2 flex justify-between items-center">
+		<nav className="border-b-1 h-10 flex justify-between items-center fixed w-[100%] px-4 bg-background">
 			<p>Desktop Gallery</p>
 			<div className="flex butoaneFereastra">
 				<button onClick={() => window.api.minimize()}>_</button>
@@ -14,5 +17,10 @@ createRoot(document.getElementById("root")).render(
 			</div>
 		</nav>
 		<App />
+
+		<SidebarProvider>
+			<AppSidebar />
+			<SidebarTrigger />
+		</SidebarProvider>
 	</StrictMode>,
 );
