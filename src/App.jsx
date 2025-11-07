@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CanvasImage } from "./components/CanvasImage";
 
 export default function App() {
 	const [folderPath, setFolderPath] = useState(null);
@@ -10,7 +11,20 @@ export default function App() {
 		setFolderPath(folder);
 
 		const imgs = await window.api.readImages(folder);
-		setImages(imgs.map((p) => `local:///${p}`));
+		//setImages(imgs.map((p) => `local:///${p}`));
+
+		const imagData = imgs.map((p, index) => ({
+			id: `img-${index + 1}`,
+			src: `local:///${p}`,
+			x: 100,
+			y: 100,
+			width: 300,
+			height: 200,
+			rotation: 0,
+			tags: [], // poți popula mai târziu cu taguri reale
+		}));
+
+		setImages(imagData);
 	};
 
 	return (
@@ -27,7 +41,7 @@ export default function App() {
 
 				<div className="grid grid-cols-3 gap-4 mt-4">
 					{images.map((src, i) => (
-						<img key={i} src={src} alt="" className="rounded shadow" />
+						<CanvasImage image={src} isSelected={false} key={i} alt="" className="rounded shadow" />
 					))}
 				</div>
 			</div>
