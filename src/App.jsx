@@ -29,7 +29,7 @@ export default function App() {
 
 	return (
 		<>
-			<div className="p-4">
+			<div className="py-14">
 				<button
 					onClick={handleSelectFolder}
 					className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
