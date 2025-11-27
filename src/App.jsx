@@ -37,13 +37,12 @@ export default function App() {
 					Selectează folder
 				</button>
 
-				{folderPath && <p className="mt-3 text-gray-700">{folderPath}</p>}
-
-				<div className="grid grid-cols-3 gap-4 mt-4">
+				<div className="flex gap-4">
 					{images.map((src, i) => (
 						<CanvasImage image={src} isSelected={false} key={i} alt="" className="rounded shadow" />
 					))}
 				</div>
+				{folderPath && <p className="mt-3 text-gray-700 fixed right-10 bottom-10">{folderPath}</p>}
 			</div>
 		</>
 	);

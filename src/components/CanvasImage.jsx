@@ -7,7 +7,7 @@ export function CanvasImage({ image, isSelected, onClick, onDragStart, scale }) 
 
 	return (
 		<div
-			className={`absolute cursor-move group ${isSelected ? "z-10" : ""}`}
+			className={`cursor-move group ${isSelected ? "z-10" : ""}`}
 			style={{
 				left: `${image.x}px`,
 				top: `${image.y}px`,
