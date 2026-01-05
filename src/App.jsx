@@ -21,10 +21,14 @@ export default function App() {
 			width: 300,
 			height: 200,
 			rotation: 0,
-			tags: [], // poți popula mai târziu cu taguri reale
+			tags: ["amogus, test"], // poți popula mai târziu cu taguri reale
 		}));
 
 		setImages(imagData);
+	};
+
+	const handleUpdatePosition = (id, newX, newY) => {
+		setImages((prevImages) => prevImages.map((img) => (img.id === id ? { ...img, x: newX, y: newY } : img)));
 	};
 
 	return (
@@ -37,9 +41,17 @@ export default function App() {
 					Selectează folder
 				</button>
 
-				<div className="flex gap-4">
+				<div className="flex gap-4 relative">
 					{images.map((src, i) => (
-						<CanvasImage image={src} isSelected={false} key={i} alt="" className="rounded shadow" />
+						<CanvasImage
+							image={src}
+							index={i}
+							isSelected={false}
+							key={i}
+							alt=""
+							className="rounded shadow"
+							onUpdatePosition={handleUpdatePosition}
+						/>
 					))}
 				</div>
 				{folderPath && <p className="mt-3 text-gray-700 fixed right-10 bottom-10">{folderPath}</p>}
